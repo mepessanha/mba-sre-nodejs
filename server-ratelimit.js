@@ -7,7 +7,7 @@ const port = 8080;
 // Middleware de rate limiting (Limite de 5 requisições por minuto)
 const limiter = rateLimit({
     windowMs: 60 * 1000,  // 1 minuto
-    max: 5,  // Limite de 5 requisições
+    max: 100,  // Limite de 5 requisições
     message: 'Você excedeu o limite de requisições, tente novamente mais tarde.',
 });
 
@@ -29,7 +29,19 @@ app.get('/api/ratelimit', async (req, res) => {
     }
 });
 
+function simulateRateLimitError() {
+    console.log('Iniciando teste de Rate Limit...');
+    
+    for (let i = 1; i <= 110; i++) {
+        fetch('http://localhost:8080/api/ratelimit')
+            .then(response => response.text())
+            .then(data => console.log(`Requisição ${i}: ${data}`))
+            .catch(() => console.error(`Erro na requisição ${i}: Limite atingido`));
+    }
+}
+
 // Iniciando o servidor
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
+    simulateRateLimitError();
 });
