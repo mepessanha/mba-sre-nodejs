@@ -241,12 +241,9 @@ Aumentar quantidade de chamadas simultâneas e avaliar o comportamento.
 **BÔNUS**: implementar método que utilizando threads para realizar as chamadas e logar na tela 
 
 
-```
-// INSIRA SUA ANÁLISE OU PARECER ABAIXO
+**Análise do Desafio**
 
-
-
-```
+Para aumentar a quantidade de chamadas simultâneas alterei o valor da constante `bulkheadPolicy`, de 2 requisições para 6 requisições. Ao implantar o teste automatizado com o threads, foi possível simular requisições concorrentes. O teste criado envia 12 requisições simultâneas ao endpoint, as 6 primeiras são executadas com sucesso e as demais recebem um erro indicando que a capacidade foi excedida.
 
 
 ---
