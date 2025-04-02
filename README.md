@@ -111,9 +111,10 @@ Ajustar configurações de timeout e corrigir erro de timeout execedido ao invoc
 ![Screen Shot 2024-09-13 at 21 42 04](https://github.com/user-attachments/assets/a451d1a1-ef3f-4116-8ab0-246d6548b7a3)
 
 ```
-// INSIRA SUA ANÁLISE OU PARECER ABAIXO
+*Análise do Problema
 
-
+O erro ocorria porque a função `externalService()` levava 5 segundos para responder, enquanto o `timeoutPromise()` estava configurado para 3 segundos. Dessa forma, o `timeoutPromise()` rejeitava a requisição antes que o `externalService()` retornasse a resposta.
+A fim de resolver o problema, aumentei o tempo limite do `timeoutPromise()` de 3 segundos para 6 segundos, garantindo que a resposta seja processada antes de atingir o limite.
 
 ```
 
