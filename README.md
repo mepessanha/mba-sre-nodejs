@@ -111,7 +111,7 @@ Ajustar configurações de timeout e corrigir erro de timeout execedido ao invoc
 ![Screen Shot 2024-09-13 at 21 42 04](https://github.com/user-attachments/assets/a451d1a1-ef3f-4116-8ab0-246d6548b7a3)
 
 
-*Análise do Problema
+*Análise do Desafio
 
 O erro ocorria porque a função `externalService()` levava 5 segundos para responder, enquanto o `timeoutPromise()` estava configurado para 3 segundos. Dessa forma, o `timeoutPromise()` rejeitava a requisição antes que o `externalService()` retornasse a resposta.
 A fim de resolver o problema, aumentei o tempo limite do `timeoutPromise()` de 3 segundos para 6 segundos, garantindo que a resposta seja processada antes de atingir o limite.
@@ -177,7 +177,7 @@ Alterar limite de requisições permitidas para 100 num intervalo de 1 minuto e 
 ![Screen Shot 2024-09-13 at 22 51 23](https://github.com/user-attachments/assets/6407456d-9bb5-41bb-ba17-9cc4a5272d29)
 
 
-*Análise
+*Análise do Desafio
 
 O parâmetro `max` no middleware `rateLimit`, que indica o limite de requisições permitidas dentro de 1 minuto, foi alterado para 100 conforme solicitado. Também foi criada a função `simulateRateLimitError` a fim de simular múltiplas requisições consecutivas e verificar se o limite está sendo aplicado corretamente. Essa função realiza 110 requisições, garantindo que as primeiras 100 sejam aceitas e as últimas 10 sejam bloqueadas, assim simulando o erro no Rate Limit.
 
