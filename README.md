@@ -319,12 +319,12 @@ curl localhost:8080/api/circuitbreaker
 Ajustar o o percentual de falhas para que o circuit breaker obtenha sucesso ao receber as requisições após sua abertura.
 Observar comportamento do circuito no console.
 
-```
-// INSIRA SUA ANÁLISE OU PARECER ABAIXO
 
+**Análise do Desafio**
 
+O percentual de falhas da função `externalService` foi alterado de 80% para 50%, tornando o comportamento do circuit breaker mais previsível. Com essa mudança, quando 50% ou mais das requisições falham, o circuito abre e começa a rejeitar novas requisições por 12 segundos devido ao `resetTimeout`.
+Inicialmente, o circuito não estava se recuperando após 10 segundos, então o tempo foi aumentado para 12 segundos, permitindo um intervalo maior antes da tentativa de reabertura. Após esse período, o circuito entra no estado half open e realiza um teste com uma nova requisição. Se essa requisição for bem-sucedida, o circuito se fecha novamente, voltando a permitir chamadas corretamente.
 
-```
 
 ---
 ### 2.5 Health Check
