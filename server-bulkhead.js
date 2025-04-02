@@ -4,8 +4,8 @@ const { bulkhead } = require('cockatiel');
 const app = express();
 const port = 8080;
 
-// Configurando bulkhead com cockatiel (Máximo de 2 requisições simultâneas)
-const bulkheadPolicy = bulkhead(2);
+// Configurando bulkhead com cockatiel (Máximo de 6 requisições simultâneas)
+const bulkheadPolicy = bulkhead(6);
 
 // Função simulando chamada externa
 async function externalService() {
