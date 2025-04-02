@@ -8,7 +8,7 @@ const port = 8080;
 async function externalService() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            const shouldFail = Math.random() > 0.8;  // Simula o percentual de falhas
+            const shouldFail = Math.random() > 0.5;  // Simula o percentual de falhas
             if (shouldFail) {
                 reject(new Error('Falha na chamada externa'));
             } else {
@@ -22,7 +22,7 @@ async function externalService() {
 const breaker = new CircuitBreaker(externalService, {
     timeout: 3000,  // Tempo limite de 3 segundos para a chamada
     errorThresholdPercentage: 50,  // Abre o circuito se 50% das requisições falharem
-    resetTimeout: 10000  // Tenta fechar o circuito após 10 segundos
+    resetTimeout: 12000  // Tenta fechar o circuito após 10 segundos
 });
 
 // Lidando com sucesso e falhas do Circuit Breaker
